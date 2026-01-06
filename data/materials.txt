@@ -1,0 +1,75 @@
+BEGIN Object
+    Name                AIController
+    Identifier          ai_controller
+    Category            Utility
+    Price               0
+    Size                1 1
+    Toughness           100
+    Sound               ObjectPlace
+
+    Properties
+        HideInMenus     true
+        Indestructable  true
+        CanRotate       false
+    END
+
+    RenderDepth         0.0
+    Collision           false
+END
+
+BEGIN Object
+    Name                AIConversationHub
+    Identifier          ai_conversation_hub
+    Category            Recreation
+    Price               50
+    Size                1 1
+    Toughness           50
+    Sound               ObjectPlace
+
+    Properties
+        Visitable       true
+        MaxUsers        8
+        UseDuration     30
+    END
+
+    RenderDepth         1.0
+    Collision           true
+END
+
+BEGIN Object
+    Name                AIThoughtBubble
+    Identifier          ai_thought_bubble
+    Category            Utility
+    Price               0
+    Size                1 1
+    Toughness           1
+    Sound               None
+
+    Properties
+        HideInMenus     true
+        Visitable       false
+        CanRotate       false
+    END
+
+    RenderDepth         10.0
+    Collision           false
+END
+
+BEGIN Object
+    Name                AIGangMeetingTable
+    Identifier          ai_gang_table
+    Category            Recreation
+    Price               100
+    Size                2 2
+    Toughness           50
+    Sound               ObjectPlace
+
+    Properties
+        Visitable       true
+        MaxUsers        6
+        UseDuration     60
+    END
+
+    RenderDepth         1.0
+    Collision           true
+END

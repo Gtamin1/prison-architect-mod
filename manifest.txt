@@ -1,0 +1,7 @@
+Name                PrisonArchitectAI
+Author              Claude Code
+Version             1.0.0
+Description         AI-Powered NPCs using Local LLMs - Every prisoner and guard gets personality, memory, and intelligence through Ollama integration. Features gang systems, conversations, emotional states, and emergent social dynamics.
+FileId              prison_architect_ai_mod
+Type                Mod
+Dependencies
