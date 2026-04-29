@@ -1,6 +1,6 @@
 Name                PrisonArchitectAI
 Author              ClaudeCode
-Version             1.0.0
-Description         AI-Powered-NPCs-Using-Local-LLMs-via-Ollama
+Version             1.1.0
+Description         Companion-tool-marker-real-features-live-in-bridge-folder
 FileId              prison_architect_ai_mod
 Type                Mod

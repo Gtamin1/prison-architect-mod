@@ -1,243 +1,121 @@
-# Prison Architect AI Mod
+# Prison Architect AI Observer
 
-## 🧠 Every Prisoner, Every Guard - Powered by AI
+A standalone Python tool that reads your Prison Architect save file, sends every
+prisoner through a local Ollama model, and writes a personality dossier
+(`dossier.md`) you can read alongside the game.
 
-Transform Prison Architect into a living, breathing social simulation where every NPC has personality, memory, and intelligence powered by **local LLMs** through Ollama.
-
-**No cloud. No subscriptions. 100% free and local.**
-
----
-
-## ✨ Features
-
-### 🎭 **Dynamic Personalities**
-- **20+ unique personality types**: The Alpha, The Strategist, The Hothead, The Survivor, and more
-- Each NPC makes decisions based on their personality traits
-- Persistent memory across game sessions
-- Emotional states that evolve over time
-
-### 💬 **AI-Generated Conversations**
-- NPCs engage in contextual dialogue based on:
-  - Their personality
-  - Current situation
-  - Relationships with others
-  - Recent events
-- Conversations appear in-game (debug log for now, visual in future updates)
-- Information sharing and rumor spreading
-
-### 👊 **Gang System**
-- Gangs form organically based on social dynamics
-- Natural leadership emergence (charisma, violence, influence)
-- Territory control and conflicts
-- Gang meetings with strategic planning
-- Coordinated actions and operations
-- Gang names generated automatically
-
-### 🧩 **Advanced Behavior**
-- **Memory system**: NPCs remember past events, relationships, and experiences
-- **Relationship tracking**: Friends, enemies, rivals, and alliances
-- **Mood system**: Happy, angry, confident, paranoid, etc.
-- **Needs tracking**: Hunger, hygiene, safety, exercise, and more
-- **Goal-oriented**: NPCs have short-term and long-term objectives
-- **Context-aware decisions**: Actions based on time, location, and nearby entities
-
-### 🔧 **Technical Highlights**
-- **100% Local**: All AI processing happens on your machine via Ollama
-- **Privacy-First**: No data leaves your computer
-- **Free Forever**: No API costs, no subscriptions
-- **Extensible**: Easy to add new personalities, behaviors, and features
-- **Performance-Optimized**: Batched processing to maintain smooth gameplay
+> **This is not an in-game mod.** Prison Architect's Lua API does not allow file
+> I/O, network calls, custom hotkeys, or runtime control of NPC behavior, so a
+> truly in-game LLM integration is impossible. This tool works with the next-best
+> thing: your real save file. The dossier reflects the actual prisoners in your
+> actual prison.
 
 ---
 
-## 🎮 How It Works
+## What it does
 
-1. **Lua Mod** runs inside Prison Architect
-   - Tracks all prisoners and guards
-   - Monitors their state, position, and context
-   - Assigns personalities and manages memory
+For each prisoner in your save it generates a short Markdown profile with:
 
-2. **Python Bridge** connects to Ollama
-   - Receives requests from the Lua mod
-   - Processes them through local LLM (llama3, mistral, etc.)
-   - Returns AI-generated decisions and dialogue
+- **Personality archetype** chosen from 20 prison-trope types (The Alpha, The
+  Strategist, The Hothead, …).
+- **Internal monologue** — what they're thinking on their first night.
+- **Hidden secret** they're keeping from the guards.
+- **Allegiance** — gangs, loners, religious group, etc.
+- **Risk factors** — short bullets for the warden.
 
-3. **Ollama** provides the intelligence
-   - Runs completely locally on your machine
-   - Supports multiple models (llama3, mistral, etc.)
-   - Fast, free, and private
-
-```
-┌─────────────────┐
-│ Prison Architect│
-│   (Lua Mod)     │ ──┐
-└─────────────────┘   │
-                      │ JSON Files
-┌─────────────────┐   │
-│  Python Bridge  │ ──┘
-│   (llm_bridge)  │
-└─────────────────┘
-         │
-         │ HTTP API
-         ▼
-┌─────────────────┐
-│     Ollama      │
-│  (Local LLM)    │
-└─────────────────┘
-```
+Run it once for a snapshot, or pass `--watch` to regenerate the dossier every
+time Prison Architect autosaves.
 
 ---
 
-## 🚀 Quick Start
+## Requirements
 
-### Prerequisites
-- **Prison Architect** (installed and working)
-- **Python 3.8+** ([Download](https://www.python.org/downloads/))
-- **Ollama** ([Download](https://ollama.ai/))
+- **Python 3.8+**
+- **Ollama** with a model pulled (e.g. `ollama pull llama3`)
+- A Prison Architect save file (`*.prison`)
 
-### Installation (5 Minutes)
+Save files live here:
 
-**See [INSTALL.md](docs/INSTALL.md) for detailed step-by-step instructions!**
+| OS      | Location                                                                 |
+|---------|--------------------------------------------------------------------------|
+| Windows | `%LOCALAPPDATA%\Introversion\Prison Architect\saves\`                    |
+| macOS   | `~/Library/Application Support/Prison Architect/saves/`                  |
+| Linux   | `~/.Prison Architect/saves/`                                             |
 
-Quick version:
+---
+
+## Install
+
 ```bash
-# 1. Install Ollama
-# Download from https://ollama.ai/
-
-# 2. Pull an LLM model
-ollama pull llama3
-
-# 3. Copy mod to Prison Architect mods folder
-# Windows: C:\Users\YourName\AppData\Local\Introversion\Prison Architect\mods
-# Mac: ~/Library/Application Support/Prison Architect/mods
-# Linux: ~/.Prison Architect/mods
-
-# 4. Install Python dependencies
 cd bridge
 pip install -r requirements.txt
-
-# 5. Test the bridge
-python llm_bridge.py --test
-
-# 6. Start the bridge
-python llm_bridge.py
-
-# 7. Launch Prison Architect!
 ```
 
----
+Verify Ollama works:
 
-## 📖 Documentation
-
-- **[INSTALL.md](docs/INSTALL.md)** - Detailed installation guide (for complete beginners!)
-- **[PROMPTS.md](docs/PROMPTS.md)** - How AI prompts work and customization
-- **[API.md](docs/API.md)** - Prison Architect API functions used
-- **[DEVELOPMENT.md](docs/DEVELOPMENT.md)** - How to extend and modify the mod
-- **[TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)** - Common issues and solutions
-- **[CHANGELOG.md](docs/CHANGELOG.md)** - Version history
-
----
-
-## 🎯 Roadmap
-
-### Current Version (1.0)
-- ✅ Personality system (20+ types)
-- ✅ Basic AI decision making
-- ✅ Gang formation and meetings
-- ✅ Conversation system
-- ✅ Memory and relationships
-- ✅ Python bridge to Ollama
-
-### Planned Features
-- 🔲 Visual speech bubbles in-game
-- 🔲 UI overlay for NPC thoughts
-- 🔲 Extended action execution (use all game objects)
-- 🔲 Escape planning over multiple days
-- 🔲 Guard personalities and corruption
-- 🔲 Prison economy (trading, debts)
-- 🔲 Psychological warfare
-- 🔲 Riot coordination
-- 🔲 Staff AI (doctors, cooks, etc.)
-- 🔲 Weather and event responses
-- 🔲 PTSD and mental health systems
-
----
-
-## 🛠️ Customization
-
-### Change LLM Model
 ```bash
-# Use a different Ollama model
-python llm_bridge.py --model mistral
+python ai_observer.py --self-test
 ```
 
-### Add New Personalities
-Edit `data/scripts/AIController.lua` and add to the `personalities` table:
-```lua
-local personalities = {
-    "Your Custom Personality",
-    -- ... existing personalities
-}
+You should see the available models listed and a one-line greeting from the LLM.
+
+---
+
+## Run
+
+Generate a dossier for a single save:
+
+```bash
+python ai_observer.py --save "C:\Users\YOU\AppData\Local\Introversion\Prison Architect\saves\savewarden.prison"
 ```
 
-### Adjust Update Frequency
-In `AIController.lua`:
-```lua
-local updateInterval = 2.0  -- Change this value (seconds)
-```
+The dossier is written to `dossier.md` in the current folder. Open it in any
+Markdown viewer.
+
+### Useful flags
+
+| Flag                | Effect                                                |
+|---------------------|-------------------------------------------------------|
+| `--model mistral`   | Use a different Ollama model (default `llama3`).      |
+| `--limit 10`        | Only process the first 10 prisoners (much faster).    |
+| `--output foo.md`   | Write to a custom path.                               |
+| `--watch`           | Regenerate every time PA autosaves the file.          |
+| `--self-test`       | Skip the save and just check Ollama connectivity.     |
+
+### Tips
+
+- Generation time is roughly *seconds-per-prisoner* × prisoner count. For a 100
+  inmate prison expect a few minutes on a small model. Use `--limit` for fast
+  iteration.
+- `--watch` pairs nicely with PA's autosave: leave the tool running in a
+  terminal, play normally, and check `dossier.md` after each save.
+- If the parser finds zero prisoners, your save's field names may differ from
+  what `find_prisoners()` looks for. Open `bridge/ai_observer.py` and adjust the
+  `Type Prisoner` heuristic — the parser itself is generic, only the prisoner
+  detection is opinionated.
 
 ---
 
-## 🤝 Contributing
+## Why there's no in-game piece
 
-This mod is open-source and welcomes contributions!
+Earlier versions of this project tried to do everything in-game with Lua scripts
+attached to invisible objects placed by the player. That approach hit hard
+limits in PA's modding system:
 
-**Ideas for contributors:**
-- Visual UI for conversations and thoughts
-- More personality types
-- Enhanced gang mechanics
-- Guard AI improvements
-- Performance optimizations
-- Better in-game visualization
-- Additional LLM provider support
+- Object scripts only get `BeginObject` / `Update` / `EndObject` hooks with very
+  narrow `this.*` access. There is no `Object.GetNearbyObjects(...)`,
+  `Game.Time()`, or general entity scanning.
+- Lua scripts are sandboxed — no `io`, no `socket`, no way to talk to a Python
+  bridge.
+- There is no API to register hotkeys (`F1` does nothing in vanilla PA) or to
+  draw custom UI overlays.
 
----
-
-## 🐛 Troubleshooting
-
-**Mod doesn't load?**
-- Check `manifest.txt` is in the mod folder
-- Verify folder structure matches documentation
-
-**Bridge not connecting?**
-- Run `python llm_bridge.py --test` to diagnose
-- Ensure Ollama is running (`ollama serve`)
-- Check firewall settings
-
-**See [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for complete guide.**
+Pretending otherwise just produces a mod that loads, registers nothing, and
+runs no code. The save-file approach trades real-time NPC control for something
+that *actually executes*.
 
 ---
 
-## 📜 License
+## License
 
-MIT License - Free to use, modify, and distribute.
-
----
-
-## 🌟 Credits
-
-**Created by:** Claude Code
-**Powered by:** Ollama, Llama 3, Prison Architect
-**Inspired by:** The amazing Prison Architect modding community
-
----
-
-## 📞 Support
-
-- **Issues:** [GitHub Issues](https://github.com/yourusername/prison-architect-ai-mod/issues)
-- **Discussion:** Prison Architect modding forums
-- **Documentation:** See `docs/` folder
-
----
-
-**Make your prison come ALIVE! 🎭🧠🏢**
+MIT. See `LICENSE`.
