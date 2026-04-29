@@ -313,8 +313,11 @@ If older, download from https://www.python.org/downloads/
    - Must have prisoners or guards in the prison
    - They must be active (not sleeping in cells indefinitely)
 
-3. **Check debug console:**
-   - Press `F1` in Prison Architect
+3. **Check the debug log file** (Prison Architect has no in-game console):
+   - Open `debug.txt` next to `preferences.txt`
+     - Windows: `%LOCALAPPDATA%\Introversion\Prison Architect\debug.txt`
+     - macOS: `~/Library/Application Support/Prison Architect/debug.txt`
+     - Linux: `~/.Prison Architect/debug.txt`
    - Look for: `AIController: Initialized`
    - Look for: `AIController: Tracking X entities`
 
@@ -577,7 +580,7 @@ If problems persist:
 
 2. **Check logs:**
    - Bridge terminal output
-   - Prison Architect debug console (F1)
+   - Prison Architect `debug.txt` (next to `preferences.txt` — there is no in-game F1 console)
    - Ollama logs
 
 3. **Create minimal test case:**

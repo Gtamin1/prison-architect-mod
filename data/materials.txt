@@ -3,11 +3,12 @@ BEGIN Object
     Identifier          ai_controller
     Category            Utility
     Price               0
-    Size                1 1
+    Width               1
+    Height              1
     Toughness           100
     Sound               ObjectPlace
 
-    Properties
+    BEGIN Properties
         HideInMenus     true
         Indestructable  true
         CanRotate       false
@@ -22,11 +23,12 @@ BEGIN Object
     Identifier          ai_conversation_hub
     Category            Recreation
     Price               50
-    Size                1 1
+    Width               1
+    Height              1
     Toughness           50
     Sound               ObjectPlace
 
-    Properties
+    BEGIN Properties
         Visitable       true
         MaxUsers        8
         UseDuration     30
@@ -41,11 +43,12 @@ BEGIN Object
     Identifier          ai_thought_bubble
     Category            Utility
     Price               0
-    Size                1 1
+    Width               1
+    Height              1
     Toughness           1
     Sound               None
 
-    Properties
+    BEGIN Properties
         HideInMenus     true
         Visitable       false
         CanRotate       false
@@ -60,11 +63,12 @@ BEGIN Object
     Identifier          ai_gang_table
     Category            Recreation
     Price               100
-    Size                2 2
+    Width               2
+    Height              2
     Toughness           50
     Sound               ObjectPlace
 
-    Properties
+    BEGIN Properties
         Visitable       true
         MaxUsers        6
         UseDuration     60
