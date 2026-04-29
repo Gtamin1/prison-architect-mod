@@ -441,7 +441,8 @@ Watch bridge process all requests.
 
 5. **Load/create prison**
 
-6. **Check debug console (F1)**
+6. **Check the debug log file** (PA has no in-game console; F1 does nothing in vanilla)
+   - Open `debug.txt` (same folder as `preferences.txt`)
    - Look for: `AIController: Initialized`
 
 7. **Place AIController object**
@@ -469,7 +470,7 @@ Watch bridge process all requests.
 - Wait for prisoners to gather nearby
 
 **Check debug output:**
-- Press F1
+- Tail the `debug.txt` file (same folder as `preferences.txt`)
 - Should see AI messages
 
 **Check bridge activity:**

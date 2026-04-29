@@ -363,10 +363,14 @@ Bridge is ready! Waiting for requests from Prison Architect...
 - You should see messages like: `AIController: Tracking 12 entities`
 
 **In-game:**
-- Press `F1` to open the **debug console**
-- You should see AI messages appear
+- Prison Architect does **not** have an in-game debug console. All `Game.DebugOut(...)` output is written to `debug.txt` instead.
+- Open `debug.txt` (in the same folder as `preferences.txt`) and look for lines starting with `AIController:`, `AIConversationHub:`, etc.
+  - Windows: `%LOCALAPPDATA%\Introversion\Prison Architect\debug.txt`
+  - macOS: `~/Library/Application Support/Prison Architect/debug.txt`
+  - Linux: `~/.Prison Architect/debug.txt`
+- Tip: keep the file open in a tail-style viewer (e.g. `Get-Content debug.txt -Wait` on PowerShell, or `tail -f debug.txt` on macOS/Linux) to watch messages live.
 
-**If you see AI messages, congratulations! 🎉 The mod is working!**
+**If you see `AIController:` lines appearing in `debug.txt`, the mod is working!**
 
 ---
 
